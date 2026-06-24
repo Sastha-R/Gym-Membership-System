@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GYM Memebership</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+        <div class="container">
+            <a class="navbar-brand" href="#">SCULPT GYM</a>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <div class="d-flex gap-2 ms-auto">
+<button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#loginModal">
+    Login
+</button>             
+       <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">
+    Sign Up
+</button>
+                </div>
+                    </nav>
+
+
+                <!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Login</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <form id = "loginForm">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="email"
+                               placeholder="Enter your email" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password"
+                               placeholder="Enter your password" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        Login
+                    </button>
+
+                    <div class="text-center mt-3">
+                        <p class="mb-0">
+                            Don't have an account?
+                            <a href="Register.html">Register</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Register Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Registration</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <form id = "registerForm">
+
+                    <div class="mb-3">
+                        <label for="fullName" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="fullName"
+                               placeholder="Enter your full name">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="registerEmail" class="form-label">Email Address</label>
+                        <input type="email" class="form-control" id="registerEmail"
+                               placeholder="Enter your email">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone"
+                               placeholder="Enter your phone number">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="registerPassword" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="registerPassword"
+                               placeholder="Enter your password">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmPassword"
+                               placeholder="Confirm your password">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Gender</label>
+                        <select class="form-select">
+                            <option selected disabled>Select Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="dob" class="form-label">Date of Birth</label>
+                        <input type="date" class="form-control" id="dob">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        Register
+                    </button>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+           
+
+
+        <section class="hero d-flex align-items-center">
+        <div class="container text-center">
+            <h1 class="display-2 fw-bold">
+                Transform Your Body Today
+            </h1>
+
+            <p class="lead my-4">
+                Manage memberships, track fitness goals, and access premium gym facilities.
+            </p>
+
+
+            <div class="container py-5">
+    <div class="row align-items-center">
+
+        <!-- Left Side Image -->
+        <div class="col-md-6 mb-4 mb-md-0">
+            <img src="https://manofmany.com/_next/image?url=https%3A%2F%2Fapi.manofmany.com%2Fwp-content%2Fuploads%2F2020%2F03%2FArnold-Bodybuilding.jpg&w=1200&q=75"
+                 class="img-fluid rounded shadow"
+                 alt="dashboard_img">
+                    <!-- <img src="https://hosstile.com/cdn/shop/articles/Sam-Sulek-Training-Arms.webp?v=1694880845"
+                 class="img-fluid rounded shadow"
+                 alt="dashboard_img"> -->
+        </div>
+
+        <!-- Right Side Content -->
+        <div class="col-md-6">
+            <h2 class="fw-bold mb-3">Transform Your Body, Transform Your Life</h2>
+            <p class="text-muted">
+                Join our state-of-the-art gym and take the first step toward a
+                healthier, stronger, and more confident you. We offer modern
+                equipment, expert trainers, personalized workout plans, and a
+                motivating environment to help you achieve your fitness goals.
+            </p>
+
+            <button class="btn btn-warning btn-lg me-2" data-bs-toggle="modal" data-bs-target="#registerModal">
+    Join Now
+</button>
+        </div>
+
+    </div>
+</div>
+
+           
+        </div>
+    </section>
+
+<section class="container py-5">
+    <div class="row g-4 text-center ">
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow border-0 p-4 ">
+                <h3> Equipment</h3>
+                <p class="mb-0">Machines isolate specific muscles with fixed, guided motions, maximizing safety and targeted hypertrophy.</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow border-0 p-4">
+                <h3> Trainers</h3>
+                <p class="mb-0">Certified trainers to guide your fitness journey.creating tailored, science-backed workout programs</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow border-0 p-4">
+                <h3> Membership</h3>
+                <p class="mb-0">Easy registration and quality facilities professional consulting services</p>
+            </div>
+        </div>
+
+
+
+    </div>
+</section>
+
+
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src = "../JavaScript/register.js"></script>
+    <script src="../JavaScript/login.js"></script>
+    
+</body>
+</html>
