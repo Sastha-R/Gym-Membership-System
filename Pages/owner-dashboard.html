@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Owner Dashboard</title>
+
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg app-navbar">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <span class="brand-mark"><i class="bi bi-lightning-charge-fill"></i></span>
+        <span>SCULPT GYM</span>
+      </a>
+      <div class="ms-auto d-flex gap-2">
+        <button class="btn btn-icon" id="themeToggle" type="button" title="Toggle theme"><i class="bi bi-moon-stars"></i></button>
+        <button class="btn btn-outline-danger" id="logoutBtn"><i class="bi bi-box-arrow-right"></i> Logout</button>
+      </div>
+    </div>
+  </nav>
+
+    <main class="container-fluid px-4 py-4">
+    <div class="dashboard-header">
+      <div>
+        <p class="eyebrow">Owner Dashboard</p>
+        <h1>Welcome</h1>
+      </div>
+      <button class="btn btn-primary" id="openPlanModal"><i class="bi bi-plus-circle"></i> Add Plan</button>
+    </div>
+
+    <section class="row g-3 mb-4">
+      <div class="col-md-3 col-sm-6"><div class="stat-card"><span>Total Members</span><strong id="totalMembers">0</strong></div></div>
+      <div class="col-md-3 col-sm-6"><div class="stat-card"><span>Total Plans</span><strong id="totalPlans">0</strong></div></div>
+      <div class="col-md-3 col-sm-6"><div class="stat-card"><span>Active Members</span><strong id="activeMembers">0</strong></div></div>
+      <div class="col-md-3 col-sm-6"><div class="stat-card"><span>Expired Members</span><strong id="expiredMembers">0</strong></div></div>
+    </section>
+
+    <section class="workspace-section">
+      <div class="section-toolbar">
+        <div>
+          <p class="eyebrow">Plans</p>
+          <h2>Plans Management</h2>
+        </div>
+        <input class="form-control search-input" id="planSearch" type="search" placeholder="Search plans">
+      </div>
+      <div class="filter-row" id="planFilters">
+        <button class="btn btn-sm btn-primary" data-filter="All">All</button>
+        <button class="btn btn-sm btn-outline-primary" data-filter="Active">Active</button>
+        <button class="btn btn-sm btn-outline-primary" data-filter="Inactive">Inactive</button>
+        <button class="btn btn-sm btn-outline-primary" data-filter="Monthly">Monthly</button>
+        <button class="btn btn-sm btn-outline-primary" data-filter="Quarterly">Quarterly</button>
+        <button class="btn btn-sm btn-outline-primary" data-filter="Half-Yearly">Half-Yearly</button>
+        <button class="btn btn-sm btn-outline-primary" data-filter="Yearly">Yearly</button>
+        <button class="btn btn-sm btn-outline-secondary" data-filter="Deleted">Deleted</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead><tr><th>Plan Name</th><th>Duration</th><th>Price</th><th>Status</th><th class="text-end">Action</th></tr></thead>
+          <tbody id="plansTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="workspace-section mt-4">
+      <div class="section-toolbar">
+        <div>
+          <p class="eyebrow">Members</p>
+          <h2>Members Section</h2>
+        </div>
+        <input class="form-control search-input" id="memberSearch" type="search" placeholder="Search members">
+      </div>
+      <div class="filter-row" id="memberFilters">
+        <button class="btn btn-sm btn-primary" data-filter="All">All</button>
+        <button class="btn btn-sm btn-outline-primary" data-filter="Active">Active</button>
+        <button class="btn btn-sm btn-outline-primary" data-filter="Expired">Expired</button>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-middle">
+          <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Current Plan</th><th>Expiry Date</th><th>Status</th></tr></thead>
+          <tbody id="membersTableBody"></tbody>
+        </table>
+      </div>
+      <nav>
+        <ul class="pagination justify-content-end" id="membersPagination"></ul>
+      </nav>
+    </section>
+  </main>
+
+
+      <div class="modal fade" id="planModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title fs-5" id="planModalTitle">Add Plan</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="planForm" novalidate>
+          <div class="modal-body">
+            <input type="hidden" id="planId">
+            <div class="mb-3">
+              <label for="planName" class="form-label">Plan Name</label>
+              <input class="form-control" id="planName" type="text">
+              <div class="invalid-feedback"></div>
+            </div>
+            <div class="mb-3">
+              <label for="planDuration" class="form-label">Duration (Days)</label>
+              <input class="form-control" id="planDuration" type="number" min="1">
+              <div class="invalid-feedback"></div>
+            </div>
+            <div class="mb-3">
+              <label for="planPrice" class="form-label">Price</label>
+              <input class="form-control" id="planPrice" type="number" min="1" step="0.01">
+              <div class="invalid-feedback"></div>
+            </div>
+            <div class="mb-3">
+              <label for="planStatus" class="form-label">Status</label>
+              <select class="form-select" id="planStatus">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-primary" type="submit"><i class="bi bi-save"></i> Save Plan</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="js/common.js"></script>
+  <script src="js/owner.js"></script>
+</body>
+</html>

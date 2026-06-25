@@ -1,9 +1,0 @@
-body{
-    /* background: linear-gradient(135deg, #000000, #e52d27); */
-background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-}
-img {
-    height: 400px;
-    object-fit: cover;
-    width: 100%;
-}
