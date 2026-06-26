@@ -28,7 +28,17 @@
       "id": "hhKN1iYbUhQ"
     }
   ],
-  "plans": [],
+  "plans": [
+    {
+      "planName": "zdfh",
+      "duration": 30,
+      "price": 500,
+      "status": "Active",
+      "isDeleted": true,
+      "createdAt": "2026-06-26T08:58:19.987Z",
+      "id": "l-QpszUfqrA"
+    }
+  ],
   "memberships": [],
   "$schema": "./node_modules/json-server/schema.json"
 }
