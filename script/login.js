@@ -1,22 +1,38 @@
-$("#loginForm").submit(function (e) {
-    e.preventDefault();
+$(function () {
+  $("#loginForm").on("submit", async function (event) {
+    event.preventDefault();
 
-    let email = $("#email").val().trim();
-    let password = $("#password").val();
+    const email = $("#loginEmail").val().trim().toLowerCase();
+    const password = $("#loginPassword").val().trim();
+    let isValid = true;
 
-    let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    let passwordRegex =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    $(".is-invalid", this).removeClass("is-invalid");
 
-    if (!emailRegex.test(email)) {
-        alert("Enter a valid email address");
-        return;
+    if (!email) {
+      $("#loginEmail").addClass("is-invalid").siblings(".invalid-feedback").text("Email is required");
+      isValid = false;
     }
 
-    if (!passwordRegex.test(password)) {
-        alert("Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number and one special character");
-        return;
+    if (!password) {
+      $("#loginPassword").addClass("is-invalid").siblings(".invalid-feedback").text("Password is required");
+      isValid = false;
     }
 
-    alert("login successfull");
-    window.location.href = "dashboard.html";
+    if (!isValid) return;
+
+    try {
+      const users = await api.get(`users?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`);
+      const user = users[0];
+      if (!user) {
+        await Swal.fire("Invalid credentials", "Please check your email and password.", "error");
+        return;
+      }
+
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
+      await Swal.fire("Login successful", `Welcome ${user.name}.`, "success");
+      window.location.href = user.role === "owner" ? "owner-dashboard.html" : "customer-dashboard.html";
+    } catch (error) {
+      Swal.fire("Login failed", error.message, "error");
+    }
+  });
 });
