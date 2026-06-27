@@ -26,6 +26,51 @@
       "role": "customer",
       "createdAt": "2026-06-26T05:53:09.074Z",
       "id": "hhKN1iYbUhQ"
+    },
+    {
+      "name": "jesse",
+      "email": "jesse@gmail.com",
+      "phone": "8987665476",
+      "password": "123456789@jJ",
+      "role": "customer",
+      "createdAt": "2026-06-27T10:11:41.699Z",
+      "id": "UTTu4Dqu8P4"
+    },
+    {
+      "name": "lalo",
+      "email": "lalo@gmail.com",
+      "phone": "9809809542",
+      "password": "123456789@lL",
+      "role": "customer",
+      "createdAt": "2026-06-27T10:12:16.537Z",
+      "id": "eMBhV9o5Z7s"
+    },
+    {
+      "name": "tuco",
+      "email": "tuco@gmail.com",
+      "phone": "9876543218",
+      "password": "123456789@tT",
+      "role": "customer",
+      "createdAt": "2026-06-27T10:12:46.473Z",
+      "id": "go8ite1OCWc"
+    },
+    {
+      "name": "saul",
+      "email": "saul@gmail.com",
+      "phone": "9876543231",
+      "password": "123456789@sS",
+      "role": "customer",
+      "createdAt": "2026-06-27T10:14:16.774Z",
+      "id": "apzdoiiklZE"
+    },
+    {
+      "name": "walter",
+      "email": "walter@gmail.com",
+      "phone": "9876543212",
+      "password": "123456789@wW",
+      "role": "customer",
+      "createdAt": "2026-06-27T10:14:56.444Z",
+      "id": "w49ZqoIEvZY"
     }
   ],
   "plans": [
@@ -37,8 +82,66 @@
       "isDeleted": true,
       "createdAt": "2026-06-26T08:58:19.987Z",
       "id": "l-QpszUfqrA"
+    },
+    {
+      "planName": "monthly",
+      "duration": 30,
+      "price": 500,
+      "status": "Active",
+      "isDeleted": false,
+      "createdAt": "2026-06-27T04:48:10.681Z",
+      "id": "Sk25iOFgoU0"
+    },
+    {
+      "planName": "half-yearly[6 Months]",
+      "duration": 180,
+      "price": 3000,
+      "status": "Active",
+      "isDeleted": false,
+      "createdAt": "2026-06-27T04:49:35.648Z",
+      "id": "2YQai_IiGi0"
+    },
+    {
+      "planName": "yearly Plan[12 months]",
+      "duration": 365,
+      "price": 6000,
+      "status": "Active",
+      "isDeleted": false,
+      "createdAt": "2026-06-27T04:58:01.427Z",
+      "id": "A2xjVnBzKKQ"
+    },
+    {
+      "planName": "monthly",
+      "duration": 29,
+      "price": 400,
+      "status": "Inactive",
+      "isDeleted": false,
+      "createdAt": "2026-06-27T04:58:37.634Z",
+      "id": "c93Y0VWaC3A"
     }
   ],
-  "memberships": [],
+  "memberships": [
+    {
+      "userId": "cV5KsMv62RQ",
+      "planId": "Sk25iOFgoU0",
+      "purchaseDate": "2026-06-26",
+      "expiryDate": "2026-07-26",
+      "id": "zgnW6hMIzpw"
+    },
+    {
+      "userId": "apzdoiiklZE",
+      "planId": "A2xjVnBzKKQ",
+      "purchaseDate": "2026-06-26",
+      "expiryDate": "2027-06-26",
+      "id": "FcGfp_gvIME"
+    },
+    {
+      "userId": "eMBhV9o5Z7s",
+      "planId": "2YQai_IiGi0",
+      "purchaseDate": "2026-06-26",
+      "expiryDate": "2026-12-23",
+      "id": "zOqMnYU3EiE"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

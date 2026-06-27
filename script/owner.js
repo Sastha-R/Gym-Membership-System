@@ -5,9 +5,11 @@ let planFilter = "All";
 let memberFilter = "All";
 let memberPage = 1;
 const membersPerPage = 5;
+let ownername;
 
 document.addEventListener("DOMContentLoaded", async () => {
-  requireRole("owner");
+  ownername = requireRole("owner");
+  document.getElementById("Welcome_owner").textContent = `Welcome ${ownername.name.toUpperCase()}`; 
   bindOwnerEvents();
   await loadOwnerData();
 });
@@ -250,7 +252,7 @@ function renderPagination(totalPages) {
   }
 
   markup += `<li class="page-item ${memberPage === totalPages ? "disabled" : ""}">
-    <button class="page-link" onclick="changeMemberPage(${memberPage + 1})">Next</button>
+    <button class="page-link" onclick="changeMemberPage(${memberPage + 1})">Next</button>.
   </li>`;
 
   pagination.innerHTML = markup;

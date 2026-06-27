@@ -90,7 +90,7 @@ function clearInvalid(input) {
 async function confirmLogout() {
   const result = await Swal.fire({
     title: "Logout?",
-    text: "Your current session will be closed.",
+    text: "Are you sure want to logout?",
     icon: "question",
     showCancelButton: true,
     confirmButtonText: "Logout"

@@ -86,10 +86,14 @@ h3,
 
 .hero-section {
   background:
-    /* linear-gradient(90deg, rgba(8, 15, 24, 0.86), rgba(8, 15, 24, 0.3)), */
-    url("https://hosstile.com/cdn/shop/articles/Sam-Sulek-Training-Arms.webp?v=1694880845") center/cover;
+    url("../assets/gym_index_background.webp") center/cover;
   color: #fff;
   min-height: 92vh;
+}
+
+[data-theme = "dark"] .hero-section {
+  background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.6)),
+  url("../Assets/dark_background.png") center/cover no-repeat;
 }
 
 .hero-section h1 {
@@ -211,7 +215,7 @@ h3,
 .stat-card strong {
   color: var(--text);
   display: block;
-  font-size: clamp(1.7rem, 4vw, 2.45rem);
+  font-size: clamp(1.7rem, 2vw, 2.45rem);
   margin-top: 12px;
 }
 
@@ -269,3 +273,27 @@ h3,
 .pagination .page-link {
   color: var(--primary);
 }
+
+
+@media (max-width: 767px) {
+  .dashboard-header,
+  .section-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .search-input,
+  .dashboard-header .btn {
+    max-width: none;
+    width: 100%;
+  }
+
+  .section-band {
+    padding: 54px 0;
+  }
+
+  .membership-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
