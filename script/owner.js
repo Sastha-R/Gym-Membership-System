@@ -8,28 +8,34 @@ const membersPerPage = 5;
 let ownername;
 
 document.addEventListener("DOMContentLoaded", async () => {
+   // Verify owner access
   ownername = requireRole("owner");
   document.getElementById("Welcome_owner").textContent = `Welcome ${ownername.name.toUpperCase()}`; 
+  // load dashboard data
   bindOwnerEvents();
   await loadOwnerData();
 });
 
 function bindOwnerEvents() {
+  // Open Add Plan modal
   document.getElementById("openPlanModal").addEventListener("click", openAddPlanModal);
+    // Save plan
   document.getElementById("planForm").addEventListener("submit", savePlan);
+    // Search plans
   document.getElementById("planSearch").addEventListener("input", renderPlans);
+   // Search members
   document.getElementById("memberSearch").addEventListener("input", () => {
     memberPage = 1;
     renderMembers();
   });
-
+// Plan filter buttons
   document.getElementById("planFilters").addEventListener("click", (event) => {
     if (!event.target.dataset.filter) return;
     planFilter = event.target.dataset.filter;
     setActiveFilter(event.currentTarget, event.target);
     renderPlans();
   });
-
+ // Member filter buttons
   document.getElementById("memberFilters").addEventListener("click", (event) => {
     if (!event.target.dataset.filter) return;
     memberFilter = event.target.dataset.filter;
@@ -55,7 +61,7 @@ function setActiveFilter(group, activeButton) {
     if (button === activeButton) {
       button.classList.add("btn-primary");
     } else if (button.dataset.filter === "Deleted") {
-      button.classList.add("btn-outline-secondary");
+      button.classList.add("btn-outline-primary");
     } else {
       button.classList.add("btn-outline-primary");
     }
@@ -84,26 +90,28 @@ function renderPlans() {
     if (plan.isDeleted) return false;
     if (planFilter === "All") return true;
     if (planFilter === "Active" || planFilter === "Inactive") return plan.status === planFilter;
+    if (planFilter === "Teen" || planFilter === "Adult" || planFilter === "Senior") return plan.ageGroup === planFilter;
     return getDurationType(plan.duration) === planFilter;
   });
 
   document.getElementById("plansTableBody").innerHTML = filteredPlans.map((plan) => {
     const statusClass = plan.status === "Active" ? "badge-active" : "badge-inactive";
     const actionButtons = plan.isDeleted
-      ? `<button class="btn btn-sm btn-outline-success" onclick="restorePlan('${plan.id}')"><i class="bi bi-arrow-counterclockwise"></i> Restore</button>`
-      : `<button class="btn btn-sm btn-outline-primary" onclick="openEditPlanModal('${plan.id}')"><i class="bi bi-pencil"></i> Edit</button>
-         <button class="btn btn-sm btn-outline-danger" onclick="softDeletePlan('${plan.id}')"><i class="bi bi-trash"></i> Delete</button>`;
+      ? `<button class="btn btn-sm btn-success" onclick="restorePlan('${plan.id}')"><i class="bi bi-arrow-counterclockwise"></i> Restore</button>`
+      : `<button class="btn btn-sm btn-primary" onclick="openEditPlanModal('${plan.id}')"><i class="bi bi-pencil"></i> Edit</button>
+         <button class="btn btn-sm btn-danger" onclick="softDeletePlan('${plan.id}')"><i class="bi bi-trash"></i> Delete</button>`;
 
-    return `<tr>
+      return `<tr>
       <td>${plan.planName}</td>
       <td>${plan.duration} days</td>
       <td>Rs. ${Number(plan.price).toLocaleString("en-IN")}</td>
+      <td>${plan.ageGroup}</td>
       <td><span class="badge-soft ${statusClass}">${plan.isDeleted ? "Deleted" : plan.status}</span></td>
       <td class="text-end"><div class="d-inline-flex gap-2 flex-wrap justify-content-end">${actionButtons}</div></td>
     </tr>`;
-  }).join("") || `<tr><td colspan="5" class="text-center text-muted py-4">No plans found</td></tr>`;
+  }).join("") || `<tr><td colspan="6" class="text-center text-muted py-4">No plans found</td></tr>`;
 }
-
+  // Opens the Add Plan modal
 function openAddPlanModal() {
   document.getElementById("planModalTitle").textContent = "Add Plan";
   document.getElementById("planForm").reset();
@@ -111,7 +119,7 @@ function openAddPlanModal() {
   document.querySelectorAll("#planForm .is-invalid").forEach(clearInvalid);
   bootstrap.Modal.getOrCreateInstance(document.getElementById("planModal")).show();
 }
-
+// Edit Plan modal 
 function openEditPlanModal(planId) {
   const plan = plans.find((item) => String(item.id) === String(planId));
   if (!plan) return;
@@ -120,6 +128,7 @@ function openEditPlanModal(planId) {
   document.getElementById("planName").value = plan.planName;
   document.getElementById("planDuration").value = plan.duration;
   document.getElementById("planPrice").value = plan.price;
+  document.getElementById("planAgeGroup").value = plan.ageGroup;
   document.getElementById("planStatus").value = plan.status;
   document.querySelectorAll("#planForm .is-invalid").forEach(clearInvalid);
   bootstrap.Modal.getOrCreateInstance(document.getElementById("planModal")).show();
@@ -131,12 +140,15 @@ async function savePlan(event) {
   const planName = document.getElementById("planName");
   const duration = document.getElementById("planDuration");
   const price = document.getElementById("planPrice");
+  const ageGroup = document.getElementById("planAgeGroup");
   const status = document.getElementById("planStatus").value;
   let isValid = true;
 
         clearInvalid(planName);
         clearInvalid(duration);
         clearInvalid(price);
+        clearInvalid(ageGroup);
+
 
   if (!planName.value.trim()) {
     setInvalid(planName, "Plan name is required");
@@ -150,12 +162,17 @@ async function savePlan(event) {
     setInvalid(price, "Price must be positive");
     isValid = false;
   }
+  if (!ageGroup.value) {
+    setInvalid(ageGroup, "Age group is required");
+    isValid = false;
+  }
   if (!isValid) return;
 
   const payload = {
     planName: planName.value.trim(),
     duration: Number(duration.value),
     price: Number(price.value),
+    ageGroup: ageGroup.value,
     status
   };
 
@@ -170,7 +187,7 @@ async function savePlan(event) {
   bootstrap.Modal.getInstance(document.getElementById("planModal")).hide();
   await loadOwnerData();
 }
-
+// plan as deleted
 async function softDeletePlan(planId) {
   const result = await Swal.fire({
     title: "Delete plan?",
@@ -184,7 +201,7 @@ async function softDeletePlan(planId) {
   await Swal.fire("Deleted", "Plan moved to Deleted.", "success");
   await loadOwnerData();
 }
-
+// RESTORE PLAN
 async function restorePlan(planId) {
   const result = await Swal.fire({
     title: "Restore plan?",
@@ -257,7 +274,7 @@ function renderPagination(totalPages) {
 
   pagination.innerHTML = markup;
 }
-
+//  PAGE NAVIGATION
 function changeMemberPage(page) {
   if (page < 1) return;
   memberPage = page;

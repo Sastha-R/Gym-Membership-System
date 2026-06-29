@@ -1,8 +1,10 @@
 $(function () {
+  //  REGISTRATION FORM SUBMISSION
   $("#registerForm").on("submit", async function (event) {
     event.preventDefault();
-
+ // Get form reference
     const form = this;
+
     const name = $("#registerName").val().trim();
     const email = $("#registerEmail").val().trim().toLowerCase();
     const phone = $("#registerPhone").val().trim();
@@ -16,7 +18,7 @@ $(function () {
       $(selector).addClass("is-invalid").siblings(".invalid-feedback").text(message);
       isValid = false;
     }
-
+  //  FORM VALIDATION
     if (!name)
        mark("#registerName", "Name is required");
 
@@ -41,7 +43,7 @@ $(function () {
         mark("#registerEmail", "Email already exists");
         return;
       }
-
+// Create a new customer account
       await api.post("users", {
         name,
         email,
@@ -54,6 +56,7 @@ $(function () {
       await Swal.fire("Registration successful", "You can now login as a customer.", "success");
       bootstrap.Modal.getInstance(document.getElementById("registerModal")).hide();
       form.reset();
+      //  ERROR HANDLING
     } catch (error) {
       Swal.fire("Registration failed", error.message, "error");
     }

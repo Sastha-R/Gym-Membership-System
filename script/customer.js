@@ -4,6 +4,8 @@ let customerMemberships = [];
 let availableFilter = "All";
 
 document.addEventListener("DOMContentLoaded", async () => {
+    // Verify customer access
+
   customerUser = requireRole("customer");
   if (!customerUser) return;
   document.getElementById("customerWelcome").textContent = `Welcome ${customerUser.name}`;
@@ -12,7 +14,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 function bindCustomerEvents() {
+    // Search available plans
+
   document.getElementById("availablePlanSearch").addEventListener("input", renderAvailablePlans);
+
+    // Filter available plans
+
   document.getElementById("availablePlanFilters").addEventListener("click", (event) => {
     if (!event.target.dataset.filter) return;
     availableFilter = event.target.dataset.filter;
@@ -37,7 +44,7 @@ function getCustomerMembership() {
   return customerMemberships
     .sort((a, b) => new Date(b.expiryDate) - new Date(a.expiryDate))[0];
 }
-
+// Displays membership details
 function renderCustomerCards() {
   const membership = getCustomerMembership();
   const plan = membership ? customerPlans.find((item) => String(item.id) === String(membership.planId)) : null;
@@ -56,9 +63,11 @@ function renderAvailablePlans() {
   const filteredPlans = customerPlans.filter((plan) => {
     const isAvailable = plan.status === "Active" && plan.isDeleted === false;
     const matchesSearch = plan.planName.toLowerCase().includes(search);
-    const matchesFilter = availableFilter === "All" || getDurationType(plan.duration) === availableFilter;
+    const matchesFilter = availableFilter === "All" || plan.ageGroup === availableFilter || getDurationType(plan.duration) === availableFilter;
     return isAvailable && matchesSearch && matchesFilter;
   });
+
+// table rows
 
   document.getElementById("availablePlansBody").innerHTML = filteredPlans.map((plan) => {
     const hasActiveMembership = membership && membershipStatus === "Active";
@@ -67,18 +76,21 @@ function renderAvailablePlans() {
     const disabled = hasActiveMembership ? "disabled" : "";
     const action = label === "Buy" ? "buyPlan" : "renewPlan";
 
-    return `<tr>
+   return `<tr>
       <td>${plan.planName}</td>
       <td>${plan.duration} days</td>
-      <td>Rs. ${Number(plan.price).toLocaleString("en-IN")}</td>
+      <td>Rs. ${Number(plan.price).toLocaleString("en-IN")}</td>  
+      <td>${plan.ageGroup}</td>
       <td class="text-end">
         <button class="btn btn-sm ${disabled ? "btn-secondary" : "btn-primary"}" ${disabled} onclick="${action}('${plan.id}')">
           <i class="bi ${label === "Already Has a Plan" ? "bi-check2-circle" : "bi-bag-check"}"></i> ${label}
         </button>
       </td>
     </tr>`;
-  }).join("") || `<tr><td colspan="4" class="text-center text-muted py-4">No plans found</td></tr>`;
+  }).join("") || `<tr><td colspan="5" class="text-center text-muted py-4">No plans found</td></tr>`;
 }
+
+  //  MEMBERSHIP PURCHASE
 
 async function buyPlan(planId) {
   const plan = customerPlans.find((item) => String(item.id) === String(planId));
@@ -92,6 +104,8 @@ async function buyPlan(planId) {
   await Swal.fire("Plan purchased", "Your membership is active.", "success");
   await loadCustomerData();
 }
+
+//  MEMBERSHIP RENEWAL
 
 async function renewPlan(planId) {
   const plan = customerPlans.find((item) => String(item.id) === String(planId));

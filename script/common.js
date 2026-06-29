@@ -1,11 +1,13 @@
 const API_URL = "http://localhost:3000";
 
 const api = {
+   // Retrieve data
   async get(resource) {
     const response = await fetch(`${API_URL}/${resource}`);
     if (!response.ok) throw new Error("Unable to load data");
     return response.json();
   },
+   // Create data
   async post(resource, payload) {
     const response = await fetch(`${API_URL}/${resource}`, {
       method: "POST",
@@ -15,6 +17,7 @@ const api = {
     if (!response.ok) throw new Error("Unable to save data");
     return response.json();
   },
+    // Update
   async patch(resource, id, payload) {
     const response = await fetch(`${API_URL}/${resource}/${id}`, {
       method: "PATCH",
@@ -30,6 +33,7 @@ function getLoggedInUser() {
   const user = localStorage.getItem("loggedInUser");
   return user ? JSON.parse(user) : null;
 }
+// page access based on user role
 
 function requireRole(role) {
   const user = getLoggedInUser();
@@ -39,12 +43,12 @@ function requireRole(role) {
   }
   return user;
 }
-
+// DD/MM/YYYY format
 function formatDate(dateString) {
   if (!dateString) return "-";
   return new Date(dateString).toLocaleDateString("en-IN", {
     day: "2-digit",
-    month: "short",
+    month: "2-digit",
     year: "numeric"
   });
 }
@@ -60,7 +64,7 @@ function addDays(days) {
   date.setDate(date.getDate() + Number(days));
   return date.toISOString().slice(0, 10);
 }
-
+// membership is Active or Expired
 function getMembershipStatus(membership) {
   if (!membership) return "Expired";
   return new Date(membership.expiryDate) >= todayAtMidnight() ? "Active" : "Expired";
@@ -86,7 +90,7 @@ function clearInvalid(input) {
   if (feedback)
      feedback.textContent = "";
 }
-
+// dialog before logging out
 async function confirmLogout() {
   const result = await Swal.fire({
     title: "Logout?",
@@ -106,7 +110,7 @@ function setupLogout() {
   const logoutBtn = document.getElementById("logoutBtn");
   if (logoutBtn) logoutBtn.addEventListener("click", confirmLogout);
 }
-
+// theme
 function applyTheme(theme) {
   document.documentElement.dataset.theme = theme;
   localStorage.setItem("theme", theme);

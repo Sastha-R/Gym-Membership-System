@@ -12,13 +12,13 @@
 <body class="dashboard-body">
   <nav class="navbar navbar-expand-lg app-navbar">
     <div class="container-fluid px-4">
-      <a class="navbar-brand d-flex align-items-center gap-2" href="customer-dashboard.html">
+      <a class=" navbar-brand d-flex align-items-center gap-2 " href="customer-dashboard.html">
         <span class="brand-mark"><i class="fa-solid fa-dumbbell"></i></span>
         <span>SCULPT GYM</span>
       </a>
       <div class="ms-auto d-flex gap-2">
         <button class="btn btn-icon" id="themeToggle" type="button"  title="Toggle theme"><i class="bi bi-moon-stars"></i></button>
-        <button class="btn btn-outline-danger" id="logoutBtn"><i class="bi bi-box-arrow-right"></i> Logout</button>
+        <button class="btn btn-danger" id="logoutBtn"><i class="bi bi-box-arrow-right"></i> Logout</button>
       </div>
     </div>
   </nav>
@@ -30,7 +30,7 @@
         <h2 id="customerWelcome">Welcome</h2>
       </div>
     </div>
-
+       <!-- PLAN FILTER BUTTONS -->
     <section class="row g-3 mb-4">
       <div class="col-md-4">
         <div class="stat-card"><span>Current Plan</span><strong id="currentPlan">None</strong>
@@ -48,25 +48,30 @@
         </div>
       </div>
     </section>
-
     <section class="workspace-section">
       <div class="section-toolbar">
         <div>
           <p class="eyebrow">Available Plans</p>
           <h2>Choose your next membership</h2>
+             <!-- Search Box -->
         </div>
         <input class="form-control search-input" id="availablePlanSearch" type="search" placeholder="Search plans">
       </div>
+            <!-- PLAN FILTER BUTTONS -->
       <div class="filter-row" id="availablePlanFilters">
         <button class="btn btn-sm btn-primary" data-filter="All">All</button>
         <button class="btn btn-sm btn-outline-primary" data-filter="Monthly">Monthly</button>
         <button class="btn btn-sm btn-outline-primary" data-filter="Quarterly">Quarterly</button>
         <button class="btn btn-sm btn-outline-primary" data-filter="Half-Yearly">Half-Yearly</button>
         <button class="btn btn-sm btn-outline-primary" data-filter="Yearly">Yearly</button>
+         <button class="btn btn-sm btn-outline-primary" data-filter="Teen">Teen</button>
+        <button class="btn btn-sm btn-outline-primary" data-filter="Adult">Adult</button>
+        <button class="btn btn-sm btn-outline-primary" data-filter="Senior">Senior</button>
       </div>
+          <!-- AVAILABLE PLANS TABLE -->
       <div class="table-responsive">
         <table class="table align-middle">
-          <thead><tr><th>Plan Name</th><th>Duration</th><th>Price</th><th class="text-end">Action</th></tr></thead>
+          <thead><tr><th>Plan Name</th><th>Duration</th><th>Price</th><th>Age Group</th><th class="text-end">Action</th></tr></thead>
           <tbody id="availablePlansBody"></tbody>
         </table>
       </div>

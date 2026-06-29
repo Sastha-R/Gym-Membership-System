@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+  <!-- NAVIGATION BAR -->
     <nav class="navbar navbar-expand-lg app-navbar">
     <div class="container-fluid px-4">
       <a class="navbar-brand d-flex align-items-center gap-2" href="#">
@@ -19,7 +20,7 @@
       </a>
       <div class="ms-auto d-flex gap-2">
         <button class="btn btn-icon" id="themeToggle" type="button" title="Toggle theme"><i class="bi bi-moon-stars"></i></button>
-        <button class="btn btn-outline-danger" id="logoutBtn"><i class="bi bi-box-arrow-right"></i> Logout</button>
+        <button class="btn btn-danger" id="logoutBtn"><i class="bi bi-box-arrow-right"></i> Logout</button>
       </div>
     </div>
   </nav>
@@ -27,7 +28,7 @@
     <main class="container-fluid px-4 py-4">
     <div class="dashboard-header">
       <div>
-        <p class="eyebrow">Owner Dashboard</p>
+        <p>Owner Dashboard</p>
         <h2 id ="Welcome_owner">Welcome </h2>
       </div>
       <button class="btn btn-primary" id="openPlanModal"><i class="bi bi-plus-circle"></i> Add Plan</button>
@@ -48,6 +49,8 @@
         </div>
         <input class="form-control search-input" id="planSearch" type="search" placeholder="Search plans">
       </div>
+            <!-- Plan Filters -->
+
       <div class="filter-row" id="planFilters">
         <button class="btn btn-sm btn-primary" data-filter="All">All</button>
         <button class="btn btn-sm btn-outline-primary" data-filter="Active">Active</button>
@@ -56,11 +59,15 @@
         <button class="btn btn-sm btn-outline-primary" data-filter="Quarterly">Quarterly</button>
         <button class="btn btn-sm btn-outline-primary" data-filter="Half-Yearly">Half-Yearly</button>
         <button class="btn btn-sm btn-outline-primary" data-filter="Yearly">Yearly</button>
-        <button class="btn btn-sm btn-outline-secondary" data-filter="Deleted">Deleted</button>
+        <button class="btn btn-sm btn-outline-primary" data-filter="Teen">Teen</button>
+        <button class="btn btn-sm btn-outline-primary" data-filter="Adult">Adult</button>
+        <button class="btn btn-sm btn-outline-primary" data-filter="Senior">Senior</button>
+        <button class="btn btn-sm btn-outline-primary" data-filter="Deleted">Deleted</button>
       </div>
+           <!-- Plans Table -->
       <div class="table-responsive">
         <table class="table align-middle">
-          <thead><tr><th>Plan Name</th><th>Duration</th><th>Price</th><th>Status</th><th class="text-end">Action</th></tr></thead>
+          <thead><tr><th>Plan Name</th><th>Duration</th><th>Price</th><th>Age Group</th><th>Status</th><th class="text-end">Action</th></tr></thead>
           <tbody id="plansTableBody"></tbody>
         </table>
       </div>
@@ -68,6 +75,7 @@
 
     <section class="workspace-section mt-4">
       <div class="section-toolbar">
+         <!-- Member Filters -->
         <div>
           <p class="eyebrow">Members</p>
           <h2>Members Section</h2>
@@ -79,18 +87,21 @@
         <button class="btn btn-sm btn-outline-primary" data-filter="Active">Active</button>
         <button class="btn btn-sm btn-outline-primary" data-filter="Expired">Expired</button>
       </div>
+         <!-- Members Table -->
       <div class="table-responsive">
         <table class="table align-middle">
           <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Current Plan</th><th>Expiry Date</th><th>Status</th></tr></thead>
           <tbody id="membersTableBody"></tbody>
         </table>
       </div>
+          <!-- Pagination -->
       <nav>
         <ul class="pagination justify-content-end" id="membersPagination"></ul>
       </nav>
     </section>
   </main>
 
+  <!-- ADD PLAN  MODAL -->
 
       <div class="modal fade" id="planModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -115,6 +126,16 @@
             <div class="mb-3">
               <label for="planPrice" class="form-label">Price</label>
               <input class="form-control" id="planPrice" type="number" min="1" step="0.01">
+              <div class="invalid-feedback"></div>
+            </div>
+              <div class="mb-3">
+              <label for="planAgeGroup" class="form-label">Age Group</label>
+              <select class="form-select" id="planAgeGroup" required>
+                <option value="">Select Age Group</option>
+                <option value="Teen">Teen</option>
+                <option value="Adult">Adult</option>
+                <option value="Senior">Senior</option>
+              </select>
               <div class="invalid-feedback"></div>
             </div>
             <div class="mb-3">

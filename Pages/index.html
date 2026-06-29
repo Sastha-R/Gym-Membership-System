@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
+         <!-- NAVIGATION BAR -->
   <nav class="navbar navbar-expand-lg fixed-top app-navbar">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center gap-2" href="#home">
@@ -20,7 +21,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="mainNav">
-        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+        <ul class="navbar-nav ms-auto align-items-center gap-2">
           <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
           <li class="nav-item">
@@ -52,38 +53,43 @@
 
 
     <section class="section-band" id="about">
-      <div class="container">
+      <div class="container ">
         <div class="section-heading">
           <p class="eyebrow">Features</p>
-          <h2>Everything a membership team needs</h2>
+          <h2 id = "Features_para">Everything a membership team needs</h2>
         </div>
-        <div class="row g-4">
+        <div class="row g-4 my-5">
           <div class="col-md-4">
             <article class="feature-card">
               <i class="bi bi-people"></i>
               <h3>Member Tracking</h3>
-              <p>View active and expired members with searchable, paginated records.</p>
+              <p> Maintain complete member profiles, monitor active and expired memberships,
+                search records instantly, and manage customer information through an
+                organized dashboard.</p>
             </article> 
           </div>
           <div class="col-md-4">
             <article class="feature-card">
               <i class="bi bi-card-checklist"></i>
               <h3>Plan Control</h3>
-              <p>Add, update, soft-delete, and restore membership plans without losing history.</p>
+              <p> Create, edit, archive, and restore membership plans with flexible pricing,
+                  durations, and age groups while preserving historical data for future
+                  reference.</p>
             </article>
           </div>
           <div class="col-md-4">
             <article class="feature-card">
               <i class="bi bi-arrow-repeat"></i>
               <h3>Buy and Renew</h3>
-              <p>Customers can buy available plans and renew expired memberships instantly.</p>
+              <p>Allow customers to purchase new memberships or renew expired plans in just
+              a few clicks with automatic expiry date calculation and status updates.</p>
             </article>
           </div>
         </div>
       </div>
     </section>
 
-
+       <!-- LOGIN MODAL -->
     
   <div class="modal fade" id="loginModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
@@ -112,6 +118,7 @@
       </div>
     </div>
   </div>
+   <!-- REGISTRATION MODAL -->
 
   <div class="modal fade" id="registerModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
@@ -160,7 +167,17 @@
 
 
 
+<!-- FOOTER -->
 
+<footer class="app-footer">
+  <div class="container">
+    <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
+      <p class="mb-2 mb-md-0">
+        © 2026 <strong>SCULPT GYM</strong>. All Rights Reserved.
+      </p>
+    </div>
+  </div>
+</footer>
 
 
 

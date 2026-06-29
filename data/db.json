@@ -71,6 +71,24 @@
       "role": "customer",
       "createdAt": "2026-06-27T10:14:56.444Z",
       "id": "w49ZqoIEvZY"
+    },
+    {
+      "name": "sam sulak",
+      "email": "sam@gmail.com",
+      "phone": "9042013766",
+      "password": "123456789@sS",
+      "role": "customer",
+      "createdAt": "2026-06-29T12:44:00.988Z",
+      "id": "yc8p5j1MRt0"
+    },
+    {
+      "name": "luffy",
+      "email": "onepiece@gmail.com",
+      "phone": "9488229740",
+      "password": "123456789@lL",
+      "role": "customer",
+      "createdAt": "2026-06-29T14:02:33.411Z",
+      "id": "SAov2yLcM1E"
     }
   ],
   "plans": [
@@ -78,46 +96,91 @@
       "planName": "zdfh",
       "duration": 30,
       "price": 500,
+      "ageGroup": "Adult",
       "status": "Active",
       "isDeleted": true,
       "createdAt": "2026-06-26T08:58:19.987Z",
       "id": "l-QpszUfqrA"
     },
     {
-      "planName": "monthly",
+      "planName": "Monthly",
       "duration": 30,
-      "price": 500,
+      "price": 1500,
+      "ageGroup": "Adult",
       "status": "Active",
       "isDeleted": false,
       "createdAt": "2026-06-27T04:48:10.681Z",
       "id": "Sk25iOFgoU0"
     },
     {
-      "planName": "half-yearly[6 Months]",
+      "planName": "Half-yearly[6 Months]",
       "duration": 180,
       "price": 3000,
+      "ageGroup": "Adult",
       "status": "Active",
       "isDeleted": false,
       "createdAt": "2026-06-27T04:49:35.648Z",
       "id": "2YQai_IiGi0"
     },
     {
-      "planName": "yearly Plan[12 months]",
+      "planName": "Yearly Plan[12 months]",
       "duration": 365,
       "price": 6000,
+      "ageGroup": "Adult",
       "status": "Active",
       "isDeleted": false,
       "createdAt": "2026-06-27T04:58:01.427Z",
       "id": "A2xjVnBzKKQ"
     },
     {
-      "planName": "monthly",
+      "planName": "Monthly",
       "duration": 29,
       "price": 400,
-      "status": "Inactive",
+      "ageGroup": "Adult",
+      "status": "Active",
       "isDeleted": false,
       "createdAt": "2026-06-27T04:58:37.634Z",
       "id": "c93Y0VWaC3A"
+    },
+    {
+      "planName": "Monthly",
+      "duration": 30,
+      "price": 650,
+      "ageGroup": "Senior",
+      "status": "Active",
+      "isDeleted": false,
+      "createdAt": "2026-06-29T05:08:30.630Z",
+      "id": "3QVxoUOG3Zo"
+    },
+    {
+      "planName": "Monthly",
+      "duration": 30,
+      "price": 400,
+      "ageGroup": "Teen",
+      "status": "Active",
+      "isDeleted": false,
+      "createdAt": "2026-06-29T05:09:25.095Z",
+      "id": "qXjOovyZaEU"
+    },
+    {
+      "planName": "Quarterly",
+      "duration": 100,
+      "price": 1300,
+      "ageGroup": "Senior",
+      "status": "Active",
+      "isDeleted": false,
+      "createdAt": "2026-06-29T06:21:31.122Z",
+      "id": "dgNJfyL_4O4"
+    },
+    {
+      "planName": "Monthly",
+      "duration": 30,
+      "price": 500,
+      "ageGroup": "Teen",
+      "status": "Active",
+      "isDeleted": false,
+      "createdAt": "2026-06-29T13:59:50.457Z",
+      "id": "0-0tV8bRZ-w"
     }
   ],
   "memberships": [
@@ -131,8 +194,8 @@
     {
       "userId": "apzdoiiklZE",
       "planId": "A2xjVnBzKKQ",
-      "purchaseDate": "2026-06-26",
-      "expiryDate": "2027-06-26",
+      "purchaseDate": "2026-06-28",
+      "expiryDate": "2027-06-28",
       "id": "FcGfp_gvIME"
     },
     {
@@ -141,6 +204,13 @@
       "purchaseDate": "2026-06-26",
       "expiryDate": "2026-12-23",
       "id": "zOqMnYU3EiE"
+    },
+    {
+      "userId": "SAov2yLcM1E",
+      "planId": "Sk25iOFgoU0",
+      "purchaseDate": "2026-06-28",
+      "expiryDate": "2026-07-28",
+      "id": "GlIS2x2AZBw"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

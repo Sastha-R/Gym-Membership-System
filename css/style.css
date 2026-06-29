@@ -1,10 +1,11 @@
 :root {
-  --bg: #e0e1e4;
-  --surface: #ffffff;
-  --surface-soft: #eef3f7;
+  --bg: url("../Assets/dashboard_bg.png") center/cover fixed no-repeat;
+  --surface: rgba(255, 255, 255, 0.55);
+   --surface-soft: #f4fbfa;
   --text: #18212f;
-  --muted: #687386;
-  --primary: #0f766e;
+  --muted: #3d4044;
+  --primary: #0a736a;
+    /* --primary: #0033ab; */
   --primary-dark: #115e59;
   --accent: #eab308;
   --border: #dde4ed;
@@ -28,13 +29,22 @@
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: "Segoe UI", Arial, sans-serif;
+  font-family: "Segoe UI", sans-serif;
 }
 
 .app-navbar {
-  background: rgba(255, 255, 255);
+  background: var(--surface);  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
 }
+
+.app-footer {
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Safari */
+  border-top: 1px solid var(--border);
+  padding: 20px 0;
+}
+
 
 [data-theme="dark"] .app-navbar {
   background: rgba(28, 35, 45, 0.94);
@@ -47,6 +57,10 @@ h2,
 h3,
 .table {
   color: var(--text);
+}
+
+#Features_para {
+  color: #fff;
 }
 
 .brand-mark {
@@ -126,9 +140,6 @@ h3,
   padding: 76px 0;
 }
 
-.alt-band {
-  background: var(--surface);
-}
 
 .section-heading {
   margin-bottom: 28px;
@@ -139,12 +150,23 @@ h3,
 .stat-card,
 .workspace-section,
 .modal-content {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
+    border-radius: 8px;
+   background: var(--surface); 
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Safari */
   box-shadow: var(--shadow);
-  color: var(--text);
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.feature-card:hover,
+.stat-card:hover,
+.workspace-section:hover,
+.modal-content:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(24, 33, 47, 0.18);
+}
+
 
 .feature-card {
   height: 100%;
@@ -161,24 +183,8 @@ h3,
   margin-top: 18px;
 }
 
-.feature-card p,
-.footer p {
+.feature-card p {
   color: var(--muted);
-}
-
-.membership-grid {
-  display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
-
-.membership-grid span {
-  background: var(--surface-soft);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  font-weight: 700;
-  padding: 26px;
-  text-align: center;
 }
 
 
@@ -199,6 +205,14 @@ h3,
 .dashboard-header h1,
 .section-toolbar h2 {
   margin: 0;
+}
+
+.dashboard-header p{
+  color:#ddd9d9;
+}
+
+#Welcome_owner,#customerWelcome{
+    color:#f3f1f1;
 }
 
 .stat-card {
@@ -288,12 +302,19 @@ h3,
     width: 100%;
   }
 
+  #openPlanModal{
+    width: 35%;
+  }
+
   .section-band {
     padding: 54px 0;
   }
 
-  .membership-grid {
-    grid-template-columns: 1fr;
+}
+
+@media(max-width:369px){
+  #openPlanModal{
+    width: 60%;
   }
 }
 
